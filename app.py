@@ -101,6 +101,12 @@ except Exception as exc:
     st.error(f"Could not load the bundled vocabulary: {exc}")
     st.stop()
 
+# make_question() reads these values from session_state. Loading them into
+# local variables alone is not sufficient, especially when Start game is
+# executed as a Streamlit button callback.
+st.session_state.vocabulary = vocabulary
+st.session_state.all_readings = all_readings
+
 st.caption(
     f"Vocabulary: {len(vocabulary):,} characters · "
     f"{len(all_readings):,} distinct pinyin readings"
